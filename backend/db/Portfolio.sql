@@ -16,7 +16,7 @@ CREATE TABLE `leden`
 CREATE TABLE `betaling`
 (
   `jaar` varchar(4),
-  `lidnummer` varchar(5),
+  `lidnummer` int,
   `email` text,
   `betaald` boolean,
   `tebetalen` text
