@@ -2,6 +2,14 @@
 
 FCA Cloud is a PHP based web app that lists members of a soccer club.
 
+<img src="https://imgur.com/a/gCEGYHn" alt="drawing" width="200"/>
+
+## Statistics
+![](https://img.shields.io/website/https/fca-cloud.com.svg?down_color=red&style=for-the-badge&up_color=green&up_message=online&down_message=offline)
+![](https://img.shields.io/github/repo-size/Code-sleep-repeat/portfolio-voetbal.svg?style=for-the-badge)
+![](https://img.shields.io/discord/564739981591969794.svg?label=Discord&logo=discord&style=for-the-badge)
+![](https://img.shields.io/github/contributors/Code-sleep-repeat/portfolio-voetbal.svg?style=for-the-badge)
+![](https://img.shields.io/github/issues-raw/Code-sleep-repeat/portfolio-voetbal.svg?style=for-the-badge)
 
 ## Requirements
 - PHP 7.2 or higher (You can use the preconfigured [installer]())
