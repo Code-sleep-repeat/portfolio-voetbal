@@ -1,10 +1,10 @@
 # FCA Cloud
 
 FCA Cloud is a PHP based web app that lists members of a soccer club.
-![logo](https://imgur.com/a/SmE2klP)
+
 
 ## Requirements
-- PHP 7.2 or higher (You can use the preconfigured [installer]()
+- PHP 7.2 or higher (You can use the preconfigured [installer]())
 - Apache
 
 
@@ -21,13 +21,16 @@ Alternatively, you can also use [the Windows installer](https://www.google.com)
 ## Endpoints
 | Parameter | Type | Description |
 | :--- | :--- | :--- |
-| `POST` | `backend/api/create.php` | Creates a member |
-| `POST` | `backend/api/Readone.php` | Returns one member from the table |
-| `POST` | `backend/api/Readone.php` | Returns one member from the table |
+| `POST` | `backend/api/member/create.php` | Creates a member |
+| `POST` | `backend/api/member/read_one.php` | Returns one member from the table |
+| `POST` | `backend/api/member/read.php` | Returns all members from the table |
+| `POST` | `backend/api/member/delete.php` | Deletes one member specified by `ID` |
+| `POST` | `backend/api/member/search.php` | Returns a members with the `ID` parameter |
+| `POST` | `backend/api/member/update.php` | updates member information changes |
 
 
 
-```
+
 ## Status Codes
 
 FCA cloud returns the following status codes in its API:
@@ -35,7 +38,7 @@ FCA cloud returns the following status codes in its API:
 | Status Code | Description |
 | :--- | :--- |
 | 200 | `OK` |
-| 201 | `CREATED` |
+| 201 | `CREATED` `UPDATED` `DELETED` `SEARCHED` |
 | 400 | `BAD REQUEST` |
 | 404 | `NOT FOUND` |
 | 500 | `INTERNAL SERVER ERROR` |
