@@ -7,12 +7,12 @@ class Member{
  
     // object properties
     public $id;
-    public $name;
-    public $description;
-    public $price;
-    public $category_id;
-    public $category_name;
-    public $created;
+    public $voornaam;
+    public $tussenvoegsel;
+    public $achternaam;
+    public $lidnummer;
+    public $details;
+
 // read products
 function read(){
  
@@ -42,24 +42,23 @@ function create(){
     $query = "INSERT INTO
                 " . $this->table_name . "
             SET
-                name=:name, price=:price, description=:description, category_id=:category_id, created=:created";
- 
+                voornaam=:voornaam, tussenvoegsel=:tussenvoegsel, achternaam=:achternaam, lidnummer=:lidnummer";
+
     // prepare query
     $stmt = $this->conn->prepare($query);
  
     // sanitize
-    $this->name=htmlspecialchars(strip_tags($this->name));
-    $this->price=htmlspecialchars(strip_tags($this->price));
-    $this->description=htmlspecialchars(strip_tags($this->description));
-    $this->category_id=htmlspecialchars(strip_tags($this->category_id));
-    $this->created=htmlspecialchars(strip_tags($this->created));
+    $this->voornaam=htmlspecialchars(strip_tags($this->voornaam));
+    $this->tussenvoegsel=htmlspecialchars(strip_tags($this->tussenvoegsel));
+    $this->achternaam=htmlspecialchars(strip_tags($this->achternaam));
+    $this->lidnummer=htmlspecialchars(strip_tags($this->lidnummer));
+
  
     // bind values
-    $stmt->bindParam(":name", $this->name);
-    $stmt->bindParam(":price", $this->price);
-    $stmt->bindParam(":description", $this->description);
-    $stmt->bindParam(":category_id", $this->category_id);
-    $stmt->bindParam(":created", $this->created);
+    $stmt->bindParam(":voornaam", $this->voornaam);
+    $stmt->bindParam(":tussenvoegsel", $this->tussenvoegsel);
+    $stmt->bindParam(":achternaam", $this->achternaam);
+    $stmt->bindParam(":lidnummer", $this->lidnummer);
  
     // execute query
     if($stmt->execute()){
@@ -98,11 +97,9 @@ function readOne(){
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
  
     // set values to object properties
-    $this->name = $row['name'];
-    $this->price = $row['price'];
-    $this->description = $row['description'];
-    $this->category_id = $row['category_id'];
-    $this->category_name = $row['category_name'];
+    $this->voornaam = $row['voornaam'];
+    $this->tussenvoegsel = $row['tussenvoegsel'];
+    $this->lidnummer = $row['lidnummer'];
 }
 function update(){
  
@@ -110,10 +107,10 @@ function update(){
     $query = "UPDATE
                 " . $this->table_name . "
             SET
-                name = :name,
-                price = :price,
-                description = :description,
-                category_id = :category_id
+                voornam = :voornaam,
+                tussenvoegsel = :tussenvoegsel,
+                lidnummer = :lidnummer
+                
             WHERE
                 id = :id";
  
@@ -121,14 +118,14 @@ function update(){
     $stmt = $this->conn->prepare($query);
  
     // sanitize
-    $this->name=htmlspecialchars(strip_tags($this->name));
-    $this->price=htmlspecialchars(strip_tags($this->price));
-    $this->description=htmlspecialchars(strip_tags($this->description));
-    $this->category_id=htmlspecialchars(strip_tags($this->category_id));
+    $this->name=htmlspecialchars(strip_tags($this->voornaam));
+    $this->tussenvoegsel=htmlspecialchars(strip_tags($this->tussenvoegsel));
+    $this->achternaam=htmlspecialchars(strip_tags($this->achternaam));
+    $this->lidnummer=htmlspecialchars(strip_tags($this->lidnummer));
     $this->id=htmlspecialchars(strip_tags($this->id));
  
     // bind new values
-    $stmt->bindParam(':name', $this->name);
+    $stmt->bindParam(':voornaam', $this->name);
     $stmt->bindParam(':price', $this->price);
     $stmt->bindParam(':description', $this->description);
     $stmt->bindParam(':category_id', $this->category_id);

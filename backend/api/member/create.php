@@ -36,7 +36,6 @@ if(
     $member->tussenvoegsel = $data->tussenvoegsel;
     $member->achternaam = $data->achternaam;
     $member->lidnummer = $data->lidnummer;
-    $member->details = $data->details;
     
  
     // create the member
