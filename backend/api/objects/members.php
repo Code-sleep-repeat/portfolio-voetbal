@@ -6,26 +6,24 @@ class Member{
     private $table_name = "leden";
  
     // object properties
-    public $id;
     public $voornaam;
     public $tussenvoegsel;
     public $achternaam;
     public $lidnummer;
-    public $details;
+    public $email;
+    public $soortlid;
+    public $geboortedatum;
+    public $postcode;
+    public $plaats;
+    public $telefoonnummer;
+    public $mobielnummer;
+    public $huisnummer;
 
 // read products
 function read(){
  
     // select all query
-    $query = "SELECT
-                c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.created
-            FROM
-                " . $this->table_name . " p
-                LEFT JOIN
-                    categories c
-                        ON p.category_id = c.id
-            ORDER BY
-                p.created DESC";
+    $query = "SELECT * FROM " . $this->table_name;
  
     // prepare query statement
     $stmt = $this->conn->prepare($query);
@@ -39,11 +37,23 @@ function read(){
 function create(){
  
     // query to insert record
-    $query = "INSERT INTO
-                " . $this->table_name . "
-            SET
-                voornaam=:voornaam, tussenvoegsel=:tussenvoegsel, achternaam=:achternaam, lidnummer=:lidnummer";
+    $query = "INSERT INTO " . $this->table_name . "
+            VALUES(
+                :voornaam, 
+                :tussenvoegsel, 
+                :achternaam, 
+                :lidnummer, 
+                :email, 
+                :soortlid,
+                :geboortedatum,
+                :postcode,
+                :plaats,
+                :telefoonnummer,
+                :mobielnummer,
+                :huisnummer)";
 
+    //echo $query;
+    //die;
     // prepare query
     $stmt = $this->conn->prepare($query);
  
@@ -52,6 +62,15 @@ function create(){
     $this->tussenvoegsel=htmlspecialchars(strip_tags($this->tussenvoegsel));
     $this->achternaam=htmlspecialchars(strip_tags($this->achternaam));
     $this->lidnummer=htmlspecialchars(strip_tags($this->lidnummer));
+    $this->email=htmlspecialchars(strip_tags($this->email));
+    $this->soortlid=htmlspecialchars(strip_tags($this->soortlid));
+    $this->geboortedatum=htmlspecialchars(strip_tags($this->geboortedatum));
+    $this->postcode=htmlspecialchars(strip_tags($this->postcode));
+    $this->plaats=htmlspecialchars(strip_tags($this->plaats));
+    $this->telefoonnummer=htmlspecialchars(strip_tags($this->telefoonnummer));
+    $this->mobielnummer=htmlspecialchars(strip_tags($this->mobielnummer));
+    $this->huisnummer=htmlspecialchars(strip_tags($this->huisnummer));
+    
 
  
     // bind values
@@ -59,13 +78,30 @@ function create(){
     $stmt->bindParam(":tussenvoegsel", $this->tussenvoegsel);
     $stmt->bindParam(":achternaam", $this->achternaam);
     $stmt->bindParam(":lidnummer", $this->lidnummer);
+    $stmt->bindParam(":email", $this->email);
+    $stmt->bindParam(":soortlid", $this->soortlid);
+    $stmt->bindParam(":geboortedatum", $this->geboortedatum);
+    $stmt->bindParam(":postcode", $this->postcode);
+    $stmt->bindParam(":plaats", $this->plaats);
+    $stmt->bindParam(":telefoonnummer", $this->telefoonnummer);
+    $stmt->bindParam(":mobielnummer", $this->mobielnummer);
+    $stmt->bindParam(":huisnummer", $this->huisnummer);
  
     // execute query
-    if($stmt->execute()){
+    //if($stmt->execute()){
+    //    return true;
+    //}
+
+    try {
+        $stmt->execute();
         return true;
+    } catch (Exception $e) {
+        echo $e->getMessage() . "<br>";
+        echo print_r($this->conn->errorInfo());
+        die; //return true;
     }
  
-    return false;
+    //return false;
      
 }
 // used when filling up the update product form

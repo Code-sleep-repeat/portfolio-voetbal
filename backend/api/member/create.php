@@ -20,25 +20,50 @@ $database = new Database();
 $db = $database->getConnection();
  
 $member = new Member($db);
- 
 // get posted data
 $data = json_decode(file_get_contents("php://input"));
- 
+//echo print_r($data); 
+//return;
 // make sure data is not empty
 if(
     !empty($data->voornaam) &&
+    !empty($data->tussenvoegsel) &&
     !empty($data->achternaam) &&
-    !empty($data->lidnummer)
+    !empty($data->lidnummer) &&
+    !empty($data->email) && 
+    !empty($data->soortlid) &&
+    !empty($data->geboortedatum) &&
+    !empty($data->postcode) &&
+    !empty($data->plaats) && 
+    !empty($data->huisnummer) 
 ){
- 
+ //echo $_GET['voornaam'];
     // set member property values
     $member->voornaam = $data->voornaam;
     $member->tussenvoegsel = $data->tussenvoegsel;
     $member->achternaam = $data->achternaam;
     $member->lidnummer = $data->lidnummer;
+    $member->email = $data->email;
+    $member->soortlid = $data->soortlid;
+    $member->geboortedatum = $data->geboortedatum;
+    $member->postcode = $data->postcode;
+    $member->plaats = $data->plaats;
+    $member->telefoonnummer = $data->telefoonnummer;
+    $member->mobielnummer = $data->mobielnummer;
+    $member->huisnummer = $data->huisnummer;
+
     
  
     // create the member
+    /*
+    try {
+        $member->create();
+    } catch (Exception $e) {
+        echo $e->getMessage();
+        return;
+    }
+    */
+
     if($member->create()){
  
         // set response code - 201 created
@@ -48,24 +73,24 @@ if(
         echo json_encode(array("message" => "member was created."));
     }
  
-    // if unable to create the member, tell the user
+    //if unable to create the member, tell the user
     else{
  
         // set response code - 503 service unavailable
         http_response_code(503);
  
         // tell the user
-        echo json_encode(array("message" => "Unable to create member."));
+        echo json_encode(array("error" => "Unable to create member."));
     }
 }
  
-// tell the user data is incomplete
+//tell the user data is incomplete
 else{
  
     // set response code - 400 bad request
-    http_response_code(400);
+    http_response_code(503);
  
     // tell the user
-    echo json_encode(array("message" => "Unable to create member. Data is incomplete."));
+    echo json_encode(array("error" => "Unable to create member. Data is incomplete."));
 }
 ?>

@@ -3,9 +3,9 @@ class Database{
  
     // specify your own database credentials
     private $host = "localhost";
-    private $db_name = "portolio_voetbal";
+    private $db_name = "portfolio";
     private $username = "root";
-    private $password = "";
+    private $password = "root";
     public $conn;
  
     // get the database connection

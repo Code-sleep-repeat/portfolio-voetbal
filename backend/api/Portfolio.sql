@@ -1,3 +1,5 @@
+
+USE portfolio;
 CREATE TABLE `login`
 (
   `username` varchar(50),
@@ -11,14 +13,14 @@ CREATE TABLE `leden`
   `achternaam` varchar(50),
   `lidnummer` varchar(5),
   `email` text,
-  `postcode` text,
-  `huisnummer` varchar(4),
-  `plaats` text,
-  `mobielnummer` varchar(10),
-  `telefoonnummer` varchar(10),
   `soortlid` varchar(6),
-  `geboortedatum` datetime
-
+  `geboortedatum` varchar(10),
+  `postcode` text,
+  `plaats` text,
+  `telefoonnummer` varchar(10),
+  `mobielnummer` varchar(10),
+  `huisnummer` varchar(4)
+  
 );
 
 CREATE TABLE `betaling`
