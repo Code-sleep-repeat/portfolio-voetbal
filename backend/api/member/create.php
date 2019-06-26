@@ -53,44 +53,44 @@ if(
     $member->huisnummer = $data->huisnummer;
 
     
- 
-    // create the member
-    /*
-    try {
-        $member->create();
-    } catch (Exception $e) {
-        echo $e->getMessage();
-        return;
-    }
-    */
-
-    if($member->create()){
- 
-        // set response code - 201 created
-        http_response_code(201);
- 
-        // tell the user
-        echo json_encode(array("message" => "member was created."));
-    }
- 
-    //if unable to create the member, tell the user
-    else{
- 
-        // set response code - 503 service unavailable
-        http_response_code(503);
- 
-        // tell the user
-        echo json_encode(array("error" => "Unable to create member."));
-    }
 }
+    // create the member
+$member->create();  
+//     try {
+//         $member->create();
+//     } catch (Exception $e) {
+//         echo $e->getMessage();
+//         return;
+//     }
+    
+// }
+//     if($member->create()){
+ 
+//         // set response code - 201 created
+//         http_response_code(201);
+ 
+//         // tell the user
+//         echo json_encode(array("message" => "member was created."));
+//     }
+ 
+//     //if unable to create the member, tell the user
+//     else{
+ 
+//         // set response code - 503 service unavailable
+//         http_response_code(503);
+ 
+//         // tell the user
+//         echo json_encode(array("error" => "Unable to create member."));
+//     }
+// }
  
 //tell the user data is incomplete
-else{
+// else{
  
-    // set response code - 400 bad request
-    http_response_code(503);
+//     // set response code - 400 bad request
+//     http_response_code(503);
  
-    // tell the user
-    echo json_encode(array("error" => "Unable to create member. Data is incomplete."));
-}
+//     // tell the user
+//     echo json_encode(array("error" => "Unable to create member. Data is incomplete."));
+// }
 ?>

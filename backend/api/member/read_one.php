@@ -8,30 +8,36 @@ header('Content-Type: application/json');
  
 // include database and object files
 include_once '../config/database.php';
-include_once '../objects/product.php';
+include_once '../objects/members.php';
  
 // get database connection
 $database = new Database();
 $db = $database->getConnection();
  
-// prepare product object
-$product = new Product($db);
+// prepare member object
+$member = new Member($db);
  
 // set ID property of record to read
-$product->id = isset($_GET['id']) ? $_GET['id'] : die();
+$member->lidnummer = isset($_GET['lidnummer']) ? $_GET['lidnummer'] : die();
  
-// read the details of product to be edited
-$product->readOne();
+// read the details of member to be edited
+$member->readOne();
  
-if($product->name!=null){
+if($member->voornaam!=null){
     // create array
-    $product_arr = array(
-        "id" =>  $product->id,
-        "name" => $product->name,
-        "description" => $product->description,
-        "price" => $product->price,
-        "category_id" => $product->category_id,
-        "category_name" => $product->category_name
+    $member_arr = array(
+        "voornaam" =>  $member->voornaam,
+        "tussenvoegsel" => $member->tussenvoegsel,
+        "achternaam" => $member->achternaam,
+        "lidnummer" => $member->lidnummer,
+        "email" => $member->email,
+        "soortlid" => $member->soortlid,
+        "geboortedatum" => $member->geboortedatum,
+        "postcode" => $member->postcode,
+        "plaats" => $member->plaats,
+        "telefoonnummer" => $member->telefoonnummer,
+        "mobielnummer" => $member->mobielnummer,
+        "huisnummer" => $member->huisnummer
  
     );
  
@@ -39,14 +45,14 @@ if($product->name!=null){
     http_response_code(200);
  
     // make it json format
-    echo json_encode($product_arr);
+    echo json_encode($member_arr);
 }
  
-else{
-    // set response code - 404 Not found
-    http_response_code(404);
+// else{
+//     // set response code - 404 Not found
+//     http_response_code(404);
  
-    // tell the user product does not exist
-    echo json_encode(array("message" => "Product does not exist."));
-}
+//     // tell the user member does not exist
+//     echo json_encode(array("message" => "member does not exist."));
+// }
 ?>

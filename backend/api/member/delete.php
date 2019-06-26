@@ -9,38 +9,38 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
  
 // include database and object file
 include_once '../config/database.php';
-include_once '../objects/product.php';
+include_once '../objects/members.php';
  
 // get database connection
 $database = new Database();
 $db = $database->getConnection();
  
-// prepare product object
-$product = new Product($db);
+// prepare member object
+$member = new member($db);
  
-// get product id
+// get member id
 $data = json_decode(file_get_contents("php://input"));
  
-// set product id to be deleted
-$product->id = $data->id;
+// set member id to be deleted
+$member->lidnummer = $data->lidnummer;
  
-// delete the product
-if($product->delete()){
+// delete the member
+if($member->delete()){
  
     // set response code - 200 ok
     http_response_code(200);
  
     // tell the user
-    echo json_encode(array("message" => "Product was deleted."));
+    echo json_encode(array("message" => "member was deleted."));
 }
  
-// if unable to delete the product
+// if unable to delete the member
 else{
  
     // set response code - 503 service unavailable
     http_response_code(503);
  
     // tell the user
-    echo json_encode(array("message" => "Unable to delete product."));
+    echo json_encode(array("message" => "Unable to delete member."));
 }
 ?>
