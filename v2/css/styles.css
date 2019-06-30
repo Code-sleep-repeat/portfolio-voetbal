@@ -1,0 +1,6 @@
+html{
+    background-color: rgb(230, 230, 230);
+}
+tr:hover {
+    background-color: #ccc;
+}
