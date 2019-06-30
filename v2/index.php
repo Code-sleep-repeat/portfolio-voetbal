@@ -2,7 +2,7 @@
 include "lib/connectdb.php";
 $sql = 'SELECT * FROM ' . $tablename;
 $sth = $db->prepare ($sql);
-$sth->execute();    
+$sth->execute();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +12,7 @@ $sth->execute();
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/style2.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
-    <title>telefoons</title>
+    <title>Voetbal vereniging FCA</title>
 </head>
 <body>
 <main>
@@ -69,31 +69,37 @@ $sth->execute();
 <div id="streep1">
 </div>
 
-    <a href="createform.php"><button>Toevoegen</button></a>
-    <table>
-    <tr>
-            <th>Voornaam</th>
-            <th>tussenvoegsel</th>
-            <th>achternaam</th>
-            <th>Lidnummer</th>
+  <div id="toevoegen">
+    <a id="toevoeg-btn" href="createform.php">
+      <i class="fas fa-user-plus" style="color: green">Toevoegen</i>
+    </a>
+  </div>
+    <div id="voetbalveld">
+      <table>
+        <tr>
+          <th>Voornaam</th>
+          <th>tussenvoegsel</th>
+          <th>achternaam</th>
+          <th>Lidnummer</th>
+        </tr>
 
-     </tr>
-
-    </thead>
-    <tbody>
+        </thead>
+        <tbody>
         <?php while($row= $sth->fetch()) {?>
             <tr>
                 <td><?php echo $row["voornaam"];?></td>
                 <td><?php echo $row["tussenvoegsel"];?></td>
                 <td><?php echo $row["achternaam"];?></td>
                 <td><?php echo $row["lidnummer"];?></td>
-
-                <td><a href="update_form.php?lidnummer=<?php echo $row['lidnummer']; ?>"><button>Wijzigen</button></a></td>
+                <div id="verwijder">
+                  <td><a href="update_form.php?lidnummer=<?php echo $row['lidnummer']; ?>"><button>Wijzigen</button></a></td>
+                </div>
                 <td><a href="delete.php?lidnummer=<?php echo $row['lidnummer']; ?>"><button>Verwijderen</button></a></td>
-              
+
             </tr>
         <?php } ?>
     </tbody>
     </table>
+  </div>
 </body>
 </html>
