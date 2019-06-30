@@ -1,4 +1,4 @@
-
+<?php $lidnummer = empty($_GET['lidnummer']) ? "onbekend" : $_GET['lidnummer']; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,12 +9,12 @@
     <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 <body>
-    <form action="update.php" method="POST">
+    <form action="update.php?lidnummer=<?php echo $lidnummer?>" method="POST">
     <?php include "read.php"?>
     <input type="text" name="voornaam" placeholder="<?php echo $item['voornaam']?>">
         <input type="text" name="tussenvoegsel" placeholder="<?php echo $item['tussenvoegsel']?>">
         <input type="text" name="achternaam" placeholder="<?php echo $item['achternaam']?>"><br>
-        <input type="text" name="lidnummer" placeholder="<?php echo $item['lidnummer']?>">
+        <input type="hidden" name="lidnummer" value="<?php echo $lidnummer?>" >
         <input type="text" name="email" placeholder="E-<?php echo $item['email']?>">
         <input type="text" name="soortlid" placeholder="<?php echo $item['soortlid']?>">
         <input type="text" name="geboortedatum" placeholder="<?php echo $item['geboortedatum']?>">
@@ -23,6 +23,7 @@
         <input type="text" name="telefoonnummer" placeholder="<?php echo $item['telefoonnummer']?>">
         <input type="text" name="mobielnummer" placeholder="<?php echo $item['mobielnummer']?>">
         <input type="text" name="huisnummer" placeholder="<?php echo $item['huisnummer']?>">
+        <input type="submit" value="Toevoegen">
     </form>
     
 </body>

@@ -1,11 +1,11 @@
 <?php
 include "lib/connectdb.php";
 
-$id = empty($_GET['id']) ? null : $_GET['id'];
-$sql = 'SELECT * FROM telefoons WHERE id = :id';
+$lidnummer = empty($_GET['lidnummer']) ? null : $_GET['lidnummer'];
+$sql = 'SELECT * FROM leden WHERE lidnummer = :lidnummer';
 
 $params = array(
-    ":id" => $id
+    ":lidnummer" => $lidnummer
 );
 
 $sth = $db->prepare($sql);

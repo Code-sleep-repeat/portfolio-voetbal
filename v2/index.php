@@ -88,7 +88,8 @@ $sth->execute();
                 <td><?php echo $row["achternaam"];?></td>
                 <td><?php echo $row["lidnummer"];?></td>
 
-                <td><a href="update_form.php?id=<?php echo $row['id']; ?>"><button>Wijzigen</button></a></td>
+                <td><a href="update_form.php?lidnummer=<?php echo $row['lidnummer']; ?>"><button>Wijzigen</button></a></td>
+                <td><a href="delete.php?lidnummer=<?php echo $row['lidnummer']; ?>"><button>Verwijderen</button></a></td>
               
             </tr>
         <?php } ?>
