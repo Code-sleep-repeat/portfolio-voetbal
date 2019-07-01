@@ -2,7 +2,7 @@
 
 FCA Cloud is a PHP based web app that lists members of a soccer club.
 
-<img src="https://imgur.com/a/gCEGYHn" alt="drawing" width="200"/>
+<img src="https://github.com/Code-sleep-repeat/portfolio-voetbal/blob/master/assets/PNG/FCA.png" alt="drawing" width="200"/>
 
 ## Statistics
 ![](https://img.shields.io/website/https/fca-cloud.com.svg?down_color=red&style=for-the-badge&up_color=green&up_message=online&down_message=offline)
